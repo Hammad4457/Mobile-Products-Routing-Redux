@@ -3,6 +3,10 @@ p {
   font-size: large;
   margin-top: 10px; /* Adjust as needed */
 }
+button {
+  cursor: pointer;
+  border: 2px solid black;
+}
 img {
   width: 200px;
   height: auto;

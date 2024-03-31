@@ -14,7 +14,7 @@ async function fetchDetails(productId) {
     console.log(error);
   }
 }
-function Details(props) {
+function Details() {
   const { productId } = useParams();
   const [details, setDetails] = useState(null);
   console.log("ID", productId);
@@ -28,7 +28,7 @@ function Details(props) {
   }, [productId]);
 
   if (!details) {
-    return <div>Loading...</div>; // or any loading indicator
+    return <div>Loading...</div>;
   }
 
   return (

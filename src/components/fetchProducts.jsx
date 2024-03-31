@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "./fetchProducts";
 
 async function Products() {
   try {
@@ -8,6 +9,7 @@ async function Products() {
       throw new Error("Product has not been fetched");
     }
     const data = await response.json();
+
     return data.products;
   } catch (error) {
     console.log(error);
@@ -17,6 +19,7 @@ async function Products() {
 
 function FetchProducts() {
   const [products, setProducts] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,22 +29,29 @@ function FetchProducts() {
     fetchData();
   }, []);
 
+  const toggle = () => {
+    setShow(!show);
+  };
+
   return (
     <>
       <h1>Products</h1>
+      <br></br>
+      <button onClick={toggle}>{show ? "Hide" : "Show"}</button>
       <ul>
-        {products.map((product, index) => (
-          <li key={index}>
-            <div>
-              <p>{product.title}</p>
-              <img src={product.thumbnail}></img>
-              <br></br>
-              <p>
-                <Link to={`/details/${product.id}`}>View Details</Link>
-              </p>
-            </div>
-          </li>
-        ))}
+        {show &&
+          products.map((product, index) => (
+            <li key={index}>
+              <div>
+                <p>{product.title}</p>
+                <img src={product.thumbnail}></img>
+                <br></br>
+                <p>
+                  <Link to={`/details/${product.id}`}>View Details</Link>
+                </p>
+              </div>
+            </li>
+          ))}
       </ul>
     </>
   );
