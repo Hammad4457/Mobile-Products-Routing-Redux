@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./fetchProducts";
+//import { useSelector } from "react-redux";
 
 async function Products() {
   try {
@@ -17,7 +18,7 @@ async function Products() {
   }
 }
 
-function FetchProducts() {
+function fetchProducts() {
   const [products, setProducts] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -38,6 +39,7 @@ function FetchProducts() {
       <h1>Products</h1>
       <br></br>
       <button onClick={toggle}>{show ? "Hide" : "Show"}</button>
+
       <ul>
         {show &&
           products.map((product, index) => (
@@ -57,4 +59,4 @@ function FetchProducts() {
   );
 }
 
-export default FetchProducts;
+export default fetchProducts;
